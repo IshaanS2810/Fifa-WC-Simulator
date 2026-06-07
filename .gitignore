@@ -1,0 +1,43 @@
+# Top-level ignore for project
+
+# Python
+venv/
+.venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Node
+node_modules/
+**/node_modules/
+
+# Build
+build/
+dist/
+
+# Packaging
+*.egg-info/
+pip-wheel-metadata/
+
+# Environment
+.env
+
+# VS Code
+.vscode/
+
+# Caches
+.pytest_cache/
+.mypy_cache/
+.cache/
+
+# Data & notebooks
+data/
+datasets/
+notebooks/
+.ipynb_checkpoints/
+*.ipynb
+
+# OS
+.DS_Store
+Thumbs.db
