@@ -1,0 +1,45 @@
+# Python
+venv/
+.venv/
+__pycache__/
+*.pyc
+
+# Byte-compiled / C extensions
+*.pyo
+*.pyd
+
+# Node
+node_modules/
+
+# Ignore any node_modules in subfolders (frontend)
+**/node_modules/
+
+# Build
+build/
+dist/
+
+# Packaging
+*.egg-info/
+pip-wheel-metadata/
+
+# Environment
+.env
+
+# VS Code
+.vscode/
+
+# Caches
+.pytest_cache/
+.mypy_cache/
+.cache/
+
+# Data & notebooks (often large)
+data/
+datasets/
+notebooks/
+.ipynb_checkpoints/
+*.ipynb
+
+# OS files
+.DS_Store
+Thumbs.db

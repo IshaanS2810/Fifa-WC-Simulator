@@ -1,0 +1,40 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "fifa-wc-simulator"
+version = "0.1.0"
+description = "FIFA World Cup 2026 tournament simulator with ML match prediction"
+readme = "fifa_wc_simulator/README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "pandas",
+    "numpy",
+    "scikit-learn",
+    "xgboost",
+    "scipy",
+    "matplotlib",
+    "seaborn",
+    "fastapi",
+    "uvicorn[standard]",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0",
+    "httpx>=0.27",
+    "jupyter",
+]
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["fifa_wc_simulator*"]
+
+[tool.pytest.ini_options]
+testpaths = ["fifa_wc_simulator/tests"]
+pythonpath = ["."]
+markers = [
+    "slow: full tournament simulations (group stage or 104-match run)",
+]
+addopts = "-ra"

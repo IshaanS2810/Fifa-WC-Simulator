@@ -1,0 +1,110 @@
+# FIFA World Cup Simulator
+
+## Project Overview
+
+The FIFA World Cup Simulator is a modular starter project for simulating international football tournaments, predicting match outcomes, and modeling team performance based on player strength, injuries, suspensions, and recent form.
+
+This project is built with Python for backend data processing, machine learning, and tournament simulation. The architecture is designed for extendability and clean separation between preprocessing, modeling, simulation, and API delivery.
+
+## Folder Structure
+
+- `datasets/` - raw, cleaned, and processed dataset storage
+- `notebooks/` - data exploration, feature engineering, training, and simulation notebooks
+- `preprocessing/` - reusable data ingestion and cleaning logic
+- `models/` - training, evaluation, prediction, and model utilities
+- `simulation/` - match simulation, group stage, knockout stage, tournament flow, and Monte Carlo support
+- `api/` - FastAPI backend and request/response schemas
+- `frontend/` - placeholder for future React UI
+- `tests/` - starter pytest-compatible test files
+- `main.py` - project entry point
+
+## Setup Instructions
+
+1. Create and activate a Python 3.11+ environment (3.11+).
+2. From the repository root (`FIFA WC Sim/`), install the package:
+
+```bash
+pip install -e ".[dev]"
+```
+
+Or install from `fifa_wc_simulator/requirements.txt` only.
+
+3. Place raw CSVs in `fifa_wc_simulator/datasets/raw/` (see `datasets/raw/README.md`).
+4. Run the project entry point:
+
+```bash
+python -m fifa_wc_simulator.main
+```
+
+5. Start the API server:
+
+```bash
+uvicorn fifa_wc_simulator.api.app:app --reload
+```
+
+## API Endpoints
+
+| Method | Path | Description |
+|--------|------|-------------|
+| GET | `/health` | API health check |
+| GET | `/api/health-data` | Raw data + team count |
+| GET | `/api/teams` | Available team names |
+| GET | `/api/team-strengths` | Team strength features |
+| POST | `/api/simulate-match` | Match win/draw/loss probabilities |
+| POST | `/api/simulate-group-stage` | Full 2026 group stage |
+| POST | `/api/simulate-tournament` | One full 104-match tournament |
+| POST | `/api/monte-carlo` | Champion/finalist probabilities |
+| GET | `/api/monte-carlo/limits` | Iteration bounds |
+
+## Development and CI
+
+Run fast tests (excludes full tournament loops):
+
+```bash
+pytest fifa_wc_simulator/tests -m "not slow"
+```
+
+Run all tests including slow integration tests:
+
+```bash
+pytest fifa_wc_simulator/tests
+```
+
+CI runs on push/PR via GitHub Actions (`.github/workflows/ci.yml`). Tests use committed fixtures in `tests/fixtures/` so they do not require `datasets/` to be present.
+
+Override team features path:
+
+```bash
+set FIFA_WC_TEAM_FEATURES_PATH=fifa_wc_simulator/datasets/processed/team_features.csv
+```
+
+## Dataset Explanation
+
+The project separates data into raw, cleaned, and processed directories:
+
+- `datasets/raw/` - original data sources such as `results.csv`, `players.csv`, and `appearances.csv`
+- `datasets/cleaned/` - intermediate cleaned match and player tables
+- `datasets/processed/` - features and labels ready for modeling
+
+Preprocessing scripts validate file paths, standardize team names, clean match history, handle missing values, and produce aggregated player/team features.
+
+## Simulation Explanation
+
+The simulator focuses on final match outcomes and tournament progression without minute-by-minute event simulation:
+
+- match simulator generates realistic scorelines and probabilistic outcomes
+- group stage computes points, goal difference, and rankings
+- knockout stage supports penalties when needed
+- tournament engine advances teams through elimination rounds
+- Monte Carlo simulation runs repeated tournaments to estimate champion and semifinal probabilities
+
+Team strength is computed from attack, midfield, defense, and goalkeeper metrics, and injuries/suspensions can be integrated into future player availability models.
+
+## Future Improvements
+
+- implement a React frontend for the simulation dashboard
+- add detailed match and player injury modeling
+- extend the backend with real team strength and form calculations
+- integrate actual FIFA datasets and feature engineering pipelines
+- add model training and evaluation workflows for match outcome prediction
+- support tournament scheduling and live bracket updates

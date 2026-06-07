@@ -1,0 +1,152 @@
+.card,
+.result-card,
+.chart-card,
+.tournament-card,
+.hero-card {
+  background: rgba(11, 25, 19, 0.92);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 28px;
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.18);
+}
+
+.result-card,
+.chart-card,
+.hero-card,
+.summary-block,
+.tournament-card {
+  padding: 1.45rem 1.6rem;
+}
+
+.result-header {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+  align-items: center;
+  margin-bottom: 1.25rem;
+}
+
+.result-subtitle {
+  color: #9dbb99;
+  margin-top: 0.45rem;
+}
+
+.winner-pill {
+  padding: 0.8rem 1rem;
+  border-radius: 999px;
+  background: rgba(35, 178, 71, 0.16);
+  border: 1px solid rgba(39, 174, 96, 0.25);
+  color: #d8f4d0;
+  font-weight: 700;
+}
+
+.probability-grid {
+  display: grid;
+  gap: 1rem;
+}
+
+.probability-row {
+  display: grid;
+  gap: 0.65rem;
+}
+
+.probability-label {
+  display: flex;
+  justify-content: space-between;
+  font-weight: 600;
+  color: #d9e6d7;
+}
+
+.meter {
+  height: 12px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.meter-fill {
+  height: 100%;
+  border-radius: 999px;
+}
+
+.spinner-shell {
+  margin: 2rem auto;
+  width: fit-content;
+  padding: 1rem 1.5rem;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  border-radius: 22px;
+}
+
+.spinner {
+  width: 44px;
+  height: 44px;
+  border: 5px solid rgba(255, 255, 255, 0.15);
+  border-top-color: #59d682;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.chart-card {
+  margin-top: 1.5rem;
+}
+
+.summary-block {
+  margin-top: 1.5rem;
+  padding: 1.3rem 1.4rem;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 22px;
+  display: flex;
+  gap: 2rem;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+}
+
+.tournament-grid {
+  margin-top: 1.75rem;
+  display: grid;
+  gap: 1.25rem;
+  grid-template-columns: repeat(3, minmax(180px, 1fr));
+}
+
+.tournament-card {
+  text-align: center;
+  min-height: 170px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.65rem;
+}
+
+.tournament-card h3 {
+  margin-bottom: 0.75rem;
+  color: #a5d1a0;
+}
+
+.tournament-card p {
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: #f7fbf7;
+}
+
+.tournament-champion {
+  background: linear-gradient(180deg, rgba(48, 141, 72, 0.16), rgba(8, 17, 10, 0.9));
+}
+
+.tournament-runner,
+.tournament-third {
+  background: rgba(8, 17, 10, 0.95);
+}
+
+@media (max-width: 900px) {
+  .tournament-grid {
+    grid-template-columns: 1fr;
+  }
+}
